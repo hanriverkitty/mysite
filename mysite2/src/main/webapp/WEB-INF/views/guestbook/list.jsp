@@ -1,5 +1,10 @@
+<%@page import="java.util.List"%>
+<%@page import="com.poscodx.mysite.vo.GuestbookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	List<GuestbookVo> list = (List<GuestbookVo>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +18,7 @@
 		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="guestbook">
-				<form action="<%=request.getContextPath() %>/guestbook" method="post">
+				<form action="<%=request.getContextPath()%>/guestbook" method="post">
 					<input type="hidden" name="a" value="insert">
 					<table>
 						<tr>
@@ -31,25 +36,32 @@
 					</table>
 				</form>
 				<ul>
+					<%
+						for (int i = list.size(); i > 0; i--) {
+					%>
 					<li>
 						<table>
 							<tr>
-								<td>[4]</td>
-								<td>안대혁</td>
-								<td>2015-11-10 11:22:30</td>
-								<td><a href="">삭제</a></td>
+								<td>[<%=i%>]
+								</td>
+								<td><%=list.get(i - 1).getName()%></td>
+								<td><%=list.get(i - 1).getDate()%></td>
+								<td><a href="<%=request.getContextPath() %>/guestbook?a=deleteform&no=<%=list.get(i-1).getNo() %>">삭제</a></td>
 							</tr>
 							<tr>
-								<td colspan=4>안녕하세요. ^^;<br> 하하하하
+								<td colspan=4><%=list.get(i - 1).getContents().replace("\n", "<br>")%></td>
 								</td>
 							</tr>
-						</table> <br>
+						</table> <br> 
 					</li>
+					<%
+ 						}
+					%>
 				</ul>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/includes/navigation.jsp"/>
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+		<jsp:include page="/WEB-INF/views/includes/navigation.jsp" />
+		<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
 </html>
