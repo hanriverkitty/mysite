@@ -1,21 +1,33 @@
 package com.poscodx.mysite.controller;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
-import com.poscodx.mysite.dao.UserDao;
-import com.poscodx.mysite.vo.UserVo;
+import com.poscodx.mysite.controller.action.main.MainAction;
+import com.poscodx.mysite.controller.action.user.JoinAction;
+import com.poscodx.mysite.controller.action.user.JoinFormAction;
+import com.poscodx.mysite.controller.action.user.JoinSuccessAction;
+import com.poscodx.mysite.controller.action.user.LoginAction;
+import com.poscodx.mysite.controller.action.user.LogoutAction;
+import com.poscodx.mysite.controller.action.user.UpdateFormAction;
 
 public class UserServlet extends ActionServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private Map<String,Action> mapAction = Map.of(
+			"joinform", new JoinFormAction(),
+			"join",new JoinAction(),
+			"joinsuccess", new JoinSuccessAction(),
+			"loginform",new LoginFormAction(),
+			"login", new LoginAction(),
+			"logout",new LogoutAction(),
+			"update",new UpdateFormAction()
+			);
+	
 	@Override
 	protected Action getAction(String actionName) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapAction.getOrDefault(actionName, new MainAction());
 	}
+	
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		request.setCharacterEncoding("utf-8");
 //		String action = request.getParameter("a");
@@ -53,7 +65,4 @@ public class UserServlet extends ActionServlet {
 //			throws ServletException, IOException {
 //		doGet(request, response);
 //	}
-
-	
-
 }
