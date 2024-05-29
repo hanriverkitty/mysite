@@ -12,9 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.poscodx.mysite.dao.GuestbookDao;
 import com.poscodx.mysite.vo.GuestbookVo;
 
-public class GuestbookServlet extends HttpServlet {
+public class GuestbookServlet extends ActionServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
+	protected Action getAction(String actionName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String action = request.getParameter("a");
@@ -65,5 +71,7 @@ public class GuestbookServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
+
+	
 
 }
