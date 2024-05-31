@@ -1,6 +1,7 @@
 package com.poscodx.mysite.controller.action.board;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +31,11 @@ public class DeleteAction implements Action {
 		///////////////////////////////////////////////////////////
 		String num = request.getParameter("no");
 		String page = request.getParameter("p");
+		String keyword = request.getParameter("kwd");
+		String decodeKwd = URLEncoder.encode(keyword, "utf-8");
 		int no = Integer.parseInt(num);
 		new BoardDao().delete(no);
-		response.sendRedirect(request.getContextPath()+"/board?p="+page);
+		response.sendRedirect(request.getContextPath()+"/board?p="+page+"&kwd="+decodeKwd);
 
 	}
 

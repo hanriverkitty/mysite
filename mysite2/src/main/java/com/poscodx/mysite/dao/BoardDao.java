@@ -203,4 +203,65 @@ public class BoardDao {
 		return result;
 	}
 	
+	public List<BoardVo> searchAll(String keyword,int p){
+		List<BoardVo> result = new ArrayList<>();
+		try (Connection conn = getConnection();
+				PreparedStatement pstmt = conn.prepareStatement("select a.no, title, contents, hit, "
+						+ "reg_date, g_no, o_no, depth, user_no, name "
+						+ "from board a, user b where a.user_no = b.no and title like ? order by g_no DESC, o_no ASC "
+						+ "limit ?,5");
+				) {
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, (p-1)*5);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int no = rs.getInt(1);
+				String title = rs.getString(2);
+				String contents = rs.getString(3);
+				int hit = rs.getInt(4);
+				String regDate = rs.getString(5);
+				int gNo = rs.getInt(6);
+				int oNo = rs.getInt(7);
+				int depth = rs.getInt(8);
+				int userNo = rs.getInt(9);
+				String name = rs.getString(10);
+			
+
+				BoardVo vo = new BoardVo();
+				vo.setNo(no);
+				vo.setTitle(title);
+				vo.setContents(contents);
+				vo.setHit(hit);
+				vo.setRegDate(regDate);
+				vo.setgNo(gNo);
+				vo.setoNo(oNo);
+				vo.setDepth(depth);
+				vo.setUserNo(userNo);
+				vo.setUserName(name);
+				result.add(vo);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		return result;
+	}
+	public int searchCount(String keyword) {
+		int result = 0;
+		try (
+				Connection conn = getConnection();
+				PreparedStatement pstmt1 = conn.prepareStatement("select count(*) from board where title like ?");
+			) {
+				
+				pstmt1.setString(1,"%"+keyword+"%");
+				ResultSet rs = pstmt1.executeQuery();
+				if(rs.next()) {
+					result = rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				System.out.println("error:" + e);
+			}
+		return result;
+	}
 }

@@ -14,8 +14,8 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"/>
 		<div id="content">
 			<div id="board">
-				<form id="search_form" action="" method="post">
-					<input type="text" id="kwd" name="kwd" value="">
+				<form id="search_form" action="${pageContext.request.contextPath}/board" method="post">
+					<input type="text" id="kwd" name="kwd" value="${kwd }">
 					<input type="submit" value="찾기">
 				</form>
 				<table class="tbl-ex">
@@ -42,7 +42,7 @@
 						<td>${vo.regDate }</td>
 						<td>
 							<c:if test='${! empty authUser && authUser.no == vo.userNo}'>
-								<a href="${pageContext.request.contextPath}/board?a=delete&no=${vo.no}&p=${p}" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath}/board?a=delete&no=${vo.no}&p=${p}&kwd=${kwd}" class="del">삭제</a>
 							</c:if>
 						</td>
 					</tr>
@@ -55,7 +55,7 @@
 						<li>
 							<c:choose>
 								<c:when test="${startNo-1 > 1}">
-									<a href="${pageContext.request.contextPath}/board?p=${startNo-1}">◀</a>
+									<a href="${pageContext.request.contextPath}/board?p=${startNo-1}&kwd=${kwd}">◀</a>
 								</c:when>
 								<c:otherwise>
 									◀
@@ -75,7 +75,7 @@
 							
 								<c:choose>
 									<c:when test="${i<=block }">
-										<a href="${pageContext.request.contextPath}/board?p=${i}">${i }</a>
+										<a href="${pageContext.request.contextPath}/board?p=${i}&kwd=${kwd}">${i }</a>
 									</c:when>
 									
 									<c:otherwise>
@@ -89,7 +89,7 @@
 						<li>
 							<c:choose>
 								<c:when test="${endNo < block}">
-									<a href="${pageContext.request.contextPath}/board?p=${endNo+1}">▶</a>
+									<a href="${pageContext.request.contextPath}/board?p=${endNo+1}&kwd=${kwd}">▶</a>
 								</c:when>
 								<c:otherwise>
 									▶

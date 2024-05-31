@@ -16,6 +16,7 @@ import com.poscodx.mysite.vo.UserVo;
 
 public class ListAction implements Action{
 
+	private BoardDao dao = new BoardDao();
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -31,14 +32,26 @@ public class ListAction implements Action{
 		
 		String strPage = Optional.ofNullable(request.getParameter("p")).orElse("1");
 		int p = Integer.parseInt(strPage);
-		int total = new BoardDao().countTotal();
-		if(p>total) p=1;
+		int total;
+		List<BoardVo> list;
+		
+		// 검색
+		String keyword = request.getParameter("kwd");
+		if(keyword!=null) {
+			list = dao.searchAll(keyword, p);
+			total = dao.searchCount(keyword);
+		} else {
+			list = new BoardDao().findAll(p);
+			total = new BoardDao().countTotal();
+			if(p>total) p=1;
+		}
+		
 		int block = (int)Math.ceil((double)total/5);
 		int currentBlock = (int)Math.ceil((double)p/5);
 		int startNo = (currentBlock-1)*5+1;
 		int endNo = currentBlock*5;
-		////////////////////////////////////////////////////////////////////
-		List<BoardVo> list = new BoardDao().findAll(p);
+		
+		
 		request.setAttribute("login", login);
 		request.setAttribute("list", list);
 		request.setAttribute("authUser", authUser);
@@ -48,6 +61,7 @@ public class ListAction implements Action{
 		request.setAttribute("startNo", startNo);
 		request.setAttribute("endNo", endNo);
 		request.setAttribute("total", total);
+		request.setAttribute("kwd",keyword);
 		request
 			.getRequestDispatcher("/WEB-INF/views/board/list.jsp")
 			.forward(request, response);
