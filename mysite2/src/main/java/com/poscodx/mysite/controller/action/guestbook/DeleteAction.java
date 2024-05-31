@@ -1,7 +1,6 @@
 package com.poscodx.mysite.controller.action.guestbook;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,17 +8,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.poscodx.mysite.controller.ActionServlet.Action;
 import com.poscodx.mysite.dao.GuestbookDao;
-import com.poscodx.mysite.vo.GuestbookVo;
 
-public class GuestbookAction implements Action {
+public class DeleteAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<GuestbookVo> list = new GuestbookDao().findAll();
-		request.setAttribute("list", list);
-		request
-			.getRequestDispatcher("/WEB-INF/views/guestbook/list.jsp")
-			.forward(request, response);
+		String no = request.getParameter("no");
+		Long no1 = Long.parseLong(no);
+		String password = request.getParameter("password");
+		int result = new GuestbookDao().deleteByNo(no1, password);
+		if (result==0) 
+		{
+			request
+				.getRequestDispatcher("/WEB-INF/views/guestbook/passwordfail.jsp")
+			    .forward(request, response);
+			
+		}
+		else response.sendRedirect(request.getContextPath()+"/guestbook");
 	}
-
 }

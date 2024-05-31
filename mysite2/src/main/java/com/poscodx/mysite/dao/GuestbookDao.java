@@ -75,7 +75,7 @@ public class GuestbookDao {
 		List<GuestbookVo> result = new ArrayList<>();
 		
 		try (Connection conn = getConnection();
-				PreparedStatement pstmt = conn.prepareStatement("select no, name, password,contents, date_format(reg_date, \"%Y-%m-%d %T\") from guestbook order by reg_date");
+				PreparedStatement pstmt = conn.prepareStatement("select no, name, password,contents, date_format(reg_date, \"%Y-%m-%d %T\") from guestbook order by reg_date desc");
 				ResultSet rs = pstmt.executeQuery();) {
 			while (rs.next()) {
 				Long no = rs.getLong(1);

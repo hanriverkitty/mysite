@@ -9,6 +9,6 @@
 <body>
 	<h1>비밀번호가 틀렸습니다</h1>
 	<br>
-	<a href="<%=request.getContextPath()%>/guestbook">확인</a>
+	<a href="${pageContext.request.contextPath}/guestbook">확인</a>
 </body>
 </html>

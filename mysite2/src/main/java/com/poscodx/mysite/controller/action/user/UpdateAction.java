@@ -15,7 +15,7 @@ public class UpdateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		
 		// Access Control
 		if(session == null) {
@@ -34,6 +34,7 @@ public class UpdateAction implements Action {
 		String gender = request.getParameter("gender");
 		
 		UserVo vo = new UserVo();
+		vo.setNo(authUser.getNo());
 		vo.setName(name);
 		vo.setPassword(password);
 		vo.setGender(gender);

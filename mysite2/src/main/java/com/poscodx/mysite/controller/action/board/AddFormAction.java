@@ -1,4 +1,4 @@
-package com.poscodx.mysite.controller.action.user;
+package com.poscodx.mysite.controller.action.board;
 
 import java.io.IOException;
 
@@ -8,14 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.poscodx.mysite.controller.ActionServlet.Action;
 
-public class LoginFormAction implements Action {
+public class AddFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request
-			.getRequestDispatcher("/WEB-INF/views/user/loginform.jsp")
-			.forward(request, response);
-		
+		request.getRequestDispatcher("/WEB-INF/views/board/write.jsp").forward(request, response);
 
 	}
 
