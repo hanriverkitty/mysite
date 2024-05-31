@@ -32,6 +32,8 @@ public class DeleteAction implements Action {
 		String num = request.getParameter("no");
 		String page = request.getParameter("p");
 		String keyword = request.getParameter("kwd");
+		
+		// url 에 한글을 넘기 때에는 인코딩해줘야된다
 		String decodeKwd = URLEncoder.encode(keyword, "utf-8");
 		int no = Integer.parseInt(num);
 		new BoardDao().delete(no);
