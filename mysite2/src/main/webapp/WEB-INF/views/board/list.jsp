@@ -30,7 +30,7 @@
 					<c:set var="count" value="${fn:length(list) }" />
 					<c:forEach items='${list }' var="vo" varStatus="status">				
 					<tr>
-						<td>${count-status.index }</td>
+						<td>${total-(p-1)*5-status.index }</td>
 						<td style="text-align:left; padding-left: ${20*vo.depth}px">
 							<c:if test='${vo.depth>0 }'>
 							<img src='${pageContext.request.contextPath}/assets/images/reply.png' />

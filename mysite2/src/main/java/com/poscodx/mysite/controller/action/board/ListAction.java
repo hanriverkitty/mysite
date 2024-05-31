@@ -47,6 +47,7 @@ public class ListAction implements Action{
 		request.setAttribute("currentBlock", currentBlock);
 		request.setAttribute("startNo", startNo);
 		request.setAttribute("endNo", endNo);
+		request.setAttribute("total", total);
 		request
 			.getRequestDispatcher("/WEB-INF/views/board/list.jsp")
 			.forward(request, response);
