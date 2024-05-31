@@ -264,4 +264,18 @@ public class BoardDao {
 			}
 		return result;
 	}
+	
+	public void updateHit(int no) {
+		try (
+				Connection conn = getConnection();
+				PreparedStatement pstmt1 = conn.prepareStatement("update board set hit=hit+1 where no=?");
+			) {
+				
+				pstmt1.setInt(1,no);
+				pstmt1.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("error:" + e);
+			}
+	}
 }
