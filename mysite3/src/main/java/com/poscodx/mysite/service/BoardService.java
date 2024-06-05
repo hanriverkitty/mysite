@@ -3,12 +3,17 @@ package com.poscodx.mysite.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poscodx.mysite.vo.BoardVo;
 
 @Service
 public class BoardService {
+	
+	@Autowired
+	private BoardRepository boardRepository;
+	
 	public void addContents(BoardVo vo) {
 		if(vo.getgNo() != null) {
 			boardRepository.updateOrderNo(...);
