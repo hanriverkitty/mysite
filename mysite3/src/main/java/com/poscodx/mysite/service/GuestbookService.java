@@ -21,6 +21,8 @@ public class GuestbookService {
 		return guestbookRepository.deleteByNo(no, password);
 	}
 	public void addContents(GuestbookVo vo) {
+		System.out.println(vo);
 		guestbookRepository.insert(vo);
+		System.out.println(vo);
 	}
 }

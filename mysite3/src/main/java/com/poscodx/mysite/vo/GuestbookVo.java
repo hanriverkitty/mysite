@@ -1,6 +1,11 @@
 package com.poscodx.mysite.vo;
 
 public class GuestbookVo {
+	@Override
+	public String toString() {
+		return "GuestbookVo [no=" + no + ", name=" + name + ", password=" + password + ", contents=" + contents
+				+ ", date=" + date + "]";
+	}
 	private Long no;
 	private String name;
 	private String password;
