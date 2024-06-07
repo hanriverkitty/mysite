@@ -20,22 +20,24 @@ public class BoardController {
 	
 	@RequestMapping("")
 	public String index(Model model) {
-		Map map = boardService.getContentsList();
+		Map map = boardService.getContentsList(1);
 		model.addAllAttributes(map);
+		model.addAttribute("p", 1);
+		return  "board/list";
 	}
 	
-	@RequestMapping("/view/{no}")
-	public String view(@PathVariable("no") int no) {
-		
-	}
-	
-	@RequestMapping("/delete/{no}")
-	public String view(HttpSession session, @PathVariable("no") int no) {
-		// access control
-				UserVo authUser = (UserVo) session.getAttribute("authUser");
-				if(authUser==null) {
-					return "redirect:/";
-				}
-				///////////////////////////
-	}
+//	@RequestMapping("/view/{no}")
+//	public String view(@PathVariable("no") int no) {
+//		
+//	}
+//	
+//	@RequestMapping("/delete/{no}")
+//	public String view(HttpSession session, @PathVariable("no") int no) {
+//		// access control
+//				UserVo authUser = (UserVo) session.getAttribute("authUser");
+//				if(authUser==null) {
+//					return "redirect:/";
+//				}
+//				///////////////////////////
+//	}
 }

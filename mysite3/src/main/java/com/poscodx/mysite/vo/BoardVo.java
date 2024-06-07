@@ -1,6 +1,12 @@
 package com.poscodx.mysite.vo;
 
 public class BoardVo {
+	@Override
+	public String toString() {
+		return "BoardVo [no=" + no + ", title=" + title + ", contents=" + contents + ", hit=" + hit + ", regDate="
+				+ regDate + ", gNo=" + gNo + ", oNo=" + oNo + ", depth=" + depth + ", userNo=" + userNo + ", userName="
+				+ userName + "]";
+	}
 	int no;
 	String title;
 	String contents;
