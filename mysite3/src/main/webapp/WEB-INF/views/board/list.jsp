@@ -15,7 +15,7 @@
 		<div id="content">
 			<div id="board">
 				<form id="search_form" action="${pageContext.request.contextPath}/board" method="post">
-					<input type="text" id="kwd" name="kwd" value="${kwd }">
+					<input type="text" id="keyword" name="keyword" value="${keyword }">
 					<input type="submit" value="찾기">
 				</form>
 				<table class="tbl-ex">
@@ -28,21 +28,21 @@
 						<th>&nbsp;</th>
 					</tr>  
 					<c:set var="count" value="${fn:length(list) }" />
-					<c:forEach items='${list }' var="vo" varStatus="status">				
+					<c:forEach items='${map.list }' var="vo" varStatus="status">				
 					<tr>
-						<td>${total-(p-1)*5-status.index }</td>
+						<td>${map.total-(p-1)*5-status.index }</td>
 						<td style="text-align:left; padding-left: ${20*vo.depth}px">
 							<c:if test='${vo.depth>0 }'>
 							<img src='${pageContext.request.contextPath}/assets/images/reply.png' />
 							</c:if>
-							<a href="${pageContext.request.contextPath}/board?a=view&no=${vo.no}">${vo.title }</a>
+							<a href="${pageContext.request.contextPath}/board/view/no=${vo.no}">${vo.title }</a>
 						</td>
 						<td>${vo.userName }</td>
 						<td>${vo.hit }</td>
 						<td>${vo.regDate }</td>
 						<td>
 							<c:if test='${! empty authUser && authUser.no == vo.userNo}'>
-								<a href="${pageContext.request.contextPath}/board?a=delete&no=${vo.no}&p=${p}&kwd=${kwd}" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath}/board/delete/${vo.no}?p=${map.p}&keyword=${map.keyowrd}" class="del">삭제</a>
 							</c:if>
 						</td>
 					</tr>
@@ -54,8 +54,8 @@
 					<ul>
 						<li>
 							<c:choose>
-								<c:when test="${startNo-1 > 1}">
-									<a href="${pageContext.request.contextPath}/board?p=${startNo-1}&kwd=${kwd}">◀</a>
+								<c:when test="${map.startNo-1 > 1}">
+									<a href="${pageContext.request.contextPath}/board?p=${map.startNo-1}&keyword=${map.keyword}">◀</a>
 								</c:when>
 								<c:otherwise>
 									◀
@@ -63,9 +63,9 @@
 							</c:choose>		
 						</li>
 						
-						<c:forEach begin="${startNo }" end="${endNo }" var="i" step="1">
+						<c:forEach begin="${map.startNo }" end="${map.endNo }" var="i" step="1">
 							<c:choose>
-								<c:when test="${p==i }">
+								<c:when test="${map.p==i }">
 									<li class="selected">
 								</c:when>
 								<c:otherwise>
@@ -74,8 +74,8 @@
 							</c:choose>
 							
 								<c:choose>
-									<c:when test="${i<=block }">
-										<a href="${pageContext.request.contextPath}/board?p=${i}&kwd=${kwd}">${i }</a>
+									<c:when test="${i<=map.block }">
+										<a href="${pageContext.request.contextPath}/board/p=${i}&keyword=${map.keyword}">${i }</a>
 									</c:when>
 									
 									<c:otherwise>
@@ -88,8 +88,8 @@
 						
 						<li>
 							<c:choose>
-								<c:when test="${endNo < block}">
-									<a href="${pageContext.request.contextPath}/board?p=${endNo+1}&kwd=${kwd}">▶</a>
+								<c:when test="${map.endNo < map.block}">
+									<a href="${pageContext.request.contextPath}/board?p=${map.endNo+1}&keyword=${map.keyword}">▶</a>
 								</c:when>
 								<c:otherwise>
 									▶
