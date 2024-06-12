@@ -7,6 +7,7 @@ package com.poscodx.mysite.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
@@ -23,5 +24,11 @@ public class MainController {
 //			System.out.println(name);
 //		}
 		return "main/index";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/msg01")
+	public String message01() {
+		return "Hello World";
 	}
 }
