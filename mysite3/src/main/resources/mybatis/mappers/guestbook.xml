@@ -4,7 +4,9 @@
 <mapper namespace="guestbook">
 	<select id="findAll" resultType="guestbookvo">
 		<![CDATA[
-		select no, name, password,contents, date_format(reg_date, '%Y-%m-%d %T') as date from guestbook order by reg_date desc
+		select no, name, password,contents, date_format(reg_date, '%Y-%m-%d %T') as date 
+		from guestbook 
+		order by reg_date desc
 		]]>
 	</select>
 	
