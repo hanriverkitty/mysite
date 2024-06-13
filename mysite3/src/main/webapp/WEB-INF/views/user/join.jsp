@@ -3,6 +3,8 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,12 +53,22 @@ $(function() {
 				<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath}/user/join">
 					<label class="block-label" for="name">이름</label>
 					<input id="name" name="name" type="text" value="">
-
+					<p style="text-align:left; padding:0; color:#f00">
+					<spring:hasBindErrors name="userVo">
+						<c:if test="${errors.hasFieldErrors('name') }">
+							<!--  -->
+							${errors.getFieldError('name').defaultMessage }
+						</c:if>
+					</spring:hasBindErrors>
+					</p>
 					<label class="block-label" for="email">이메일</label>
 					<input id="email" name="email" type="text" value="">
 					<input id="btn-check" type="button" value="이메일 확인">
 					<img id="img-check" src="${pageContext.request.contextPath}/assets/images/check.png" style="vertical-align:bottom; width:24px; display:none" />
-					<label class="block-label">패스워드</label>
+					
+					<label class="block-label">
+						<spring:message code='user.join.lavbel.password'/>			
+					</label>
 					<input name="password" type="password" value="">
 					
 					<fieldset>
