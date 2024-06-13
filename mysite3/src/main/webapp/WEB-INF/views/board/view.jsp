@@ -40,7 +40,7 @@
 						<a href="${pageContext.request.contextPath}/board/update/${vo.no}">글수정</a>
 					</c:if>
 					<c:if test="${login }">
-						<a href="${pageContext.request.contextPath}/board?a=replyform&groupNo=${vo.gNo}&orderNo=${vo.oNo}&depth=${vo.depth}&no=${vo.no}">답글</a>
+						<a href="${pageContext.request.contextPath}/board/reply?gNo=${vo.gNo}&oNo=${vo.oNo}&depth=${vo.depth}&no=${vo.no}">답글</a>
 					</c:if>
 				</div>
 			</div>

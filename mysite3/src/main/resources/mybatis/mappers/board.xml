@@ -44,7 +44,7 @@
 		]]>
 	</insert>
 	
-	<delete id='delete' parameterType='long'>
+	<delete id='delete' parameterType='integer'>
 		<![CDATA[
 			delete from board where no=#{no}
 		]]>	

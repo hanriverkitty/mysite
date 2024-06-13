@@ -18,7 +18,8 @@ public class BoardService {
 	
 	public void addContents(BoardVo vo) {
 		if(Integer.valueOf(vo.getgNo()) != null) {
-			boardRepository.updateOrderNo(vo);
+			boardRepository.reply(vo);
+			return;
 		}
 		boardRepository.insert(vo);
 	}
@@ -40,7 +41,11 @@ public class BoardService {
 		boardRepository.update(vo);
 	}
 	
-	public void deleteContents(int boardNo, int userNo) {
+	public BoardVo findByNo(int no) {
+		return boardRepository.findByNo(no);
+	}
+	
+	public void deleteContents(int boardNo) {
 		boardRepository.delete(boardNo);
 	}
 	

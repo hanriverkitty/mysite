@@ -7,15 +7,20 @@ import org.hibernate.validator.constraints.Length;
 
 public class UserVo {
 	private Long no;
+	
+	
 	@NotEmpty
 	@Length(min=2,max=8)
 	private String name;
+	
 	@NotEmpty
 	@Email
 	private String email;
+	
 	@NotEmpty
-	@Length(min=2, max=8)
+	@Length(min=4, max=16)
 	private String password;
+	
 	private String gender;
 	private String joinDate;
 	private String role;
