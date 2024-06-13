@@ -25,6 +25,7 @@ public class BoardService {
 	
 	public BoardVo getContents(int no) {
 		BoardVo vo = boardRepository.findByNo(no);
+		System.out.println(vo);
 		if(vo!=null) {
 			boardRepository.updateHit(no);
 		}
@@ -44,21 +45,21 @@ public class BoardService {
 	}
 	
 	public Map<String,Object> getContentsList(String keyword, int p) {
-		System.out.println("getContentsList");
+
 		List<BoardVo> list;
 		int total;
 		int limitIndex=(p-1)*5;
-		System.out.println(keyword+":::::");
+
 		if(!"".equals(keyword)) {
 			list = boardRepository.findAll("%"+keyword+"%", limitIndex);
 			total = boardRepository.searchCount("%"+keyword+"%");
-			System.out.println("getContentsList null");
 		} else {
 			list = boardRepository.findAll(limitIndex);
-			total = boardRepository.countTotal();
+			total = (int)boardRepository.countTotal();
 			if(p>total) p=1;
-			System.out.println("getContentsList else");
 		}
+		
+		// 페이지 계산
 		int block = (int)Math.ceil((double)total/5);
 		int currentBlock = (int)Math.ceil((double)p/5);
 		int startNo = (currentBlock-1)*5+1;

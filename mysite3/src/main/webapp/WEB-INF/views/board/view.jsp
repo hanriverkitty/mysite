@@ -37,7 +37,7 @@
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath}/board">글목록</a>
 					<c:if test="${writer }">
-						<a href="${pageContext.request.contextPath}/board?a=updateform&no=${vo.no}">글수정</a>
+						<a href="${pageContext.request.contextPath}/board/update/${vo.no}">글수정</a>
 					</c:if>
 					<c:if test="${login }">
 						<a href="${pageContext.request.contextPath}/board?a=replyform&groupNo=${vo.gNo}&orderNo=${vo.oNo}&depth=${vo.depth}&no=${vo.no}">답글</a>

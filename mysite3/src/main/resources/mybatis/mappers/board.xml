@@ -10,7 +10,7 @@
 		]]>
 	</insert>
 	
-	<select id='findAll' parameterType='long' resultType='boardvo'>
+	<select id='findAll' parameterType='integer' resultType='boardvo'>
 		<![CDATA[
 				select a.no, title, contents, hit,
 				reg_date as regDate , g_no as gNo, o_no as Ono, depth, user_no as userNo, name as userName 
@@ -21,7 +21,7 @@
 	
 	<select id='findByNo' parameterType = 'integer' resultType='boardvo'>
 		<![CDATA[
-			select title, contents, hit, g_no as gNo, o_no as oNo, depth, user_no as userNo, b.name
+			select a.no, title, contents, hit, g_no as gNo, o_no as oNo, depth, user_no as userNo, b.name
 			from board a, user b where a.user_no = b.no and a.no=#{no}
 		]]>
 	</select>
@@ -53,7 +53,7 @@
 	<select id='countTotal' resultType='integer'>
 		<![CDATA[
 			select count(*) from board
-		]]>>
+		]]>
 	</select>
 	
 	<select id='searchAll' parameterType='map' resultType='boardvo'>
