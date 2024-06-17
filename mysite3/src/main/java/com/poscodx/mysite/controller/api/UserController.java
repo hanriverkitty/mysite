@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.poscodx.mysite.dto.JsonResult;
 import com.poscodx.mysite.service.UserService;
 import com.poscodx.mysite.vo.UserVo;
 
@@ -21,9 +22,6 @@ public class UserController {
 	@GetMapping("/checkemail")
 	public JsonResult checkEmail(@RequestParam(value="email",required=true,defaultValue="") String email){
 		UserVo vo = userService.getUser(email);
-		return Map.of(
-				"result","success",
-				"message", null,
-				"data", vo != null);
+		return JsonResult.success(vo!=null);	
 	}
 }

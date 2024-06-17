@@ -21,9 +21,9 @@ public class AdminController {
 	private ServletContext servletContext;
 	@Autowired
 	private ApplicationContext applicationContext;
-	@Autowired
-	private SiteService siteService;
-	
+////	@Autowired
+////	private SiteService siteService;
+//	
 	@Auth(role = "ADMIN")
 	@RequestMapping("")
 	public String main() {
