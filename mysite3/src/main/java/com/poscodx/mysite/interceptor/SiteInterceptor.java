@@ -8,6 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.LocaleResolver;
 
 import com.poscodx.mysite.service.SiteService;
+import com.poscodx.mysite.vo.SiteVo;
 
 public class SiteInterceptor implements HandlerInterceptor {
 	
@@ -24,7 +25,12 @@ public class SiteInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
+		SiteVo siteVo = (SiteVo) request.getServletContext().getAttribute("siteVo");
+		if(siteVo == null) {
+			siteVo=siteService.getSite();
+			request.getServletContext().setAttribute("siteVo", siteVo);
+		}
+			
 		// Locale
 		System.out.println("resilver-locale: "+localeResolver.resolveLocale(request).getLanguage());
 		request.setAttribute("language", localeResolver.resolveLocale(request).getLanguage());

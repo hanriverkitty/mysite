@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.poscodx.mysite.security.Auth;
+import com.poscodx.mysite.service.FileUploadService;
 import com.poscodx.mysite.service.SiteService;
 import com.poscodx.mysite.vo.SiteVo;
 
@@ -21,9 +22,11 @@ public class AdminController {
 	private ServletContext servletContext;
 	@Autowired
 	private ApplicationContext applicationContext;
-////	@Autowired
-////	private SiteService siteService;
-//	
+	@Autowired
+	private SiteService siteService;
+	@Autowired
+	private FileUploadService fileUploadService;
+	
 	@Auth(role = "ADMIN")
 	@RequestMapping("")
 	public String main() {
@@ -38,7 +41,7 @@ public class AdminController {
 		}
 		
 		siteService.updateSite(vo);
-		servletContext.setAttribute("sitevo", vo);
+		servletContext.setAttribute("siteVo", vo);
 		SiteVo site = applicationContext.getBean(SiteVo.class);
 //		site.setTitle(vo.getTitle());
 //		site.setWelcome(vo.getWelcome());
