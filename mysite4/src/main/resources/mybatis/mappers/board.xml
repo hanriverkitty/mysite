@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<insert id='insert' parameterType='boardvo'>
+		<![CDATA[
+		insert into board values(null,#{title},#{contents},0,now(),
+		(select ifnull(max(g_no),0)+1 from board as b),
+		1,0,#{userNo})
+		]]>
+	</insert>
+	
+	<select id='findAll' parameterType='integer' resultType='boardvo'>
+		<![CDATA[
+				select a.no, title, contents, hit,
+				reg_date as regDate , g_no as gNo, o_no as Ono, depth, user_no as userNo, name as userName 
+				from board a, user b where a.user_no = b.no order by g_no DESC, o_no ASC
+				limit #{p},5
+		]]>
+	</select>
+	
+	<select id='findByNo' parameterType = 'integer' resultType='boardvo'>
+		<![CDATA[
+			select a.no, title, contents, hit, g_no as gNo, o_no as oNo, depth, user_no as userNo, b.name
+			from board a, user b where a.user_no = b.no and a.no=#{no}
+		]]>
+	</select>
+	
+	<update id='update' parameterType='boardvo'>
+		<![CDATA[
+			update board set title=#{title}, contents=#{contents}, reg_date=now() where no=#{no}
+		]]>
+	</update>
+	
+	<update id='updateOrderNo' parameterType='boardvo'>
+		<![CDATA[
+			update board set o_no=o_no+1 where g_no = #{gNo} and o_no >= #{oNo}+1
+		]]>
+	</update>
+	
+	<insert id='reply' parameterType='boardvo'>
+		<![CDATA[
+			insert into board values(null,#{title}, #{contents}, 0,now(),#{gNo},#{oNo}+1,#{depth}+1,#{userNo})
+		]]>
+	</insert>
+	
+	<delete id='delete' parameterType='integer'>
+		<![CDATA[
+			delete from board where no=#{no}
+		]]>	
+	</delete>
+	
+	<select id='countTotal' resultType='integer'>
+		<![CDATA[
+			select count(*) from board
+		]]>
+	</select>
+	
+	<select id='searchAll' parameterType='map' resultType='boardvo'>
+		<![CDATA[
+			select a.no, title, contents, hit, reg_date, g_no, o_no, depth, user_no, name 
+			from board a, user b 
+			where a.user_no = b.no and title like #{keyword}
+			order by g_no DESC, o_no ASC
+			limit #{p},5
+		]]>
+	</select>
+	
+	<select id="searchCount" parameterType='string' resultType='integer'>
+		<![CDATA[
+			select count(*) from board where title like #{keyword}
+		]]>
+	</select>
+	
+	<update id='updateHit' parameterType='integer'>
+		<![CDATA[
+			update board set hit=hit+1 where no=#{no}
+		]]>
+	</update>
+	
+	
+</mapper>
