@@ -17,11 +17,7 @@ public class SiteInterceptor implements HandlerInterceptor {
 	
 	@Autowired
 	private SiteService siteService;
-	
-	public SiteInterceptor(SiteService siteService) {
-		this.siteService = siteService;
-	}
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
