@@ -94,7 +94,7 @@
 5. View
    - Thymeleaf Template View **
 6. Security **
-   - Authentication(인증) & Authorization(권한)
+   - Authentication(인증) & Authorization(권한)=
    - Spring Secuirty
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
@@ -131,7 +131,7 @@
 8. 기능
    - mysite05와 동일
 
-### mysite07
+### mysite07 (완전한 jar)
 1. Packaging
    - jar(Embeded Tomcat) **
 2. Framework
