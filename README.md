@@ -99,7 +99,7 @@
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
    - Spring Resource Handler: assets(images, css, js, etc..) **
-   - Default Servlet Handler: disable **
+   - Default Servlet Handler: disable ** (삭제되고 Spring Resource로 바뀔 예정)
 8. 기능
    - Exception Handling: NoHandlerFoundException 처리 추가 **
    - 이외 기능은 mysite04와 동일
