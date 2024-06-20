@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poscodx.mysite.security.AuthUser;
 import com.poscodx.mysite.vo.UserVo;
 
 @Controller
@@ -16,7 +17,6 @@ public class MainController {
 	
 	@RequestMapping({"/","/main"})
 	public String index(
-			
 			// HttpServletRequest request
 			) {
 //		ServletContext sc = request.getServletContext();
