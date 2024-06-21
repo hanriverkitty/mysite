@@ -1,0 +1,17 @@
+4) passwordParameter("password")
+5) UserDetailsServiceImpl & UserDetails 구현
+6) 기존 UserService 수정: PasswordEncoder로 비밀번호 암호화 하기
+7) defaultSuccessurl('/')
+8) failureUrl("/user/login?result=fail")
+9) JSP UI 처리(Spring Security Tag Library)
+
+5. 로그아웃 처리
+1) Logout Configurer 설정
+    http.logout()
+2) .logoutUrl("/user/logout")
+3) .logoutSuccessUrl("/")
+
+6. Authority 처리
+   UserDetailsImpl.getAuthoruty() 오버라이딩
+
+7.  ACL 추가 작업~~
