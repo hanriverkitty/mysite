@@ -107,7 +107,7 @@ public class BoardController {
 	
 	@Auth
 	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String add(@AuthUser UserVo authUser) {
+	public String add() {
 		return "board/write";
 	}
 	
