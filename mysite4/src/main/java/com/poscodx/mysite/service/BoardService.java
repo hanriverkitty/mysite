@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.poscodx.mysite.repository.BoardRepository;
 import com.poscodx.mysite.vo.BoardVo;
@@ -16,6 +17,7 @@ public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
 	
+	@Transactional
 	public void addContents(BoardVo vo) {
 		if(Integer.valueOf(vo.getgNo()) != null) {
 			boardRepository.reply(vo);
@@ -24,6 +26,7 @@ public class BoardService {
 		boardRepository.insert(vo);
 	}
 	
+	@Transactional
 	public BoardVo getContents(int no) {
 		BoardVo vo = boardRepository.findByNo(no);
 		System.out.println(vo);
