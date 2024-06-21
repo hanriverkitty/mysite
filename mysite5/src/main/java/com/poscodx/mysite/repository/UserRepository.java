@@ -1,8 +1,11 @@
 package com.poscodx.mysite.repository;
 
 import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.poscodx.mysite.security.UserDetailsImpl;
 import com.poscodx.mysite.vo.UserVo;
 
 @Repository
@@ -14,6 +17,7 @@ public class UserRepository {
 	}
 
 	public int insert(UserVo vo) {
+		System.out.println("insert");
 		return sqlSession.insert("user.insert",vo);
 		
 	}
@@ -32,5 +36,9 @@ public class UserRepository {
 
 	public UserVo findByEmail(String email) {
 		return sqlSession.selectOne("user.findByEmail",email);
+	}
+
+	public UserDetailsImpl findByEmail2(String email) {
+		return sqlSession.selectOne("user.findByEmail2", email);
 	}
 }
