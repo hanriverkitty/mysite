@@ -83,14 +83,14 @@ public class UserController {
 		return "user/update";
 	}
 	
-	@Auth
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-	public String update(@AuthUser UserVo authUser, UserVo vo) {
-		
+	public String update(Authentication authentication, UserVo vo) {
+		UserVo authUser = (UserVo)authentication.getPrincipal();
 		vo.setNo(authUser.getNo());
-		userService.update(vo);
-		authUser.setName(vo.getName());
 		
+		userService.update(vo);
+		
+		authUser.setName(vo.getName());
 		return "redirect:/user/update";
 	}
 	

@@ -90,7 +90,8 @@ public class SecurityConfig {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-    	return new BCryptPasswordEncoder(16);
+    	// 여기서 숫자가 클 수록 시간이 많이 걸린다
+    	return new BCryptPasswordEncoder(4 /* 4~16 */);
     }
 
     @Bean
