@@ -68,7 +68,7 @@
 5. View
    - JSP
    - JSTL & EL
-6. Security **
+6. Security
    - Authentication(인증) & Authorization(권한)
    - Spring Interceptor & ArgumentResolver
    - Declative Annotaions: @Auth, @AuthUser 지원
@@ -92,14 +92,15 @@
    - Repository(DAO) 구현: MyBatis
    - Transaction: DataSourceTransactionManager(Spring JDBC), @Transactional(Transaction AOP Proxy)
 5. View
-   - Thymeleaf Template View **
+   - JSP
+   - JSTL & EL
 6. Security **
-   - Authentication(인증) & Authorization(권한)=
+   - Authentication(인증) & Authorization(권한)
    - Spring Secuirty
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
    - Spring Resource Handler: assets(images, css, js, etc..) **
-   - Default Servlet Handler: disable ** (삭제되고 Spring Resource로 바뀔 예정)
+   - Default Servlet Handler: disable **
 8. 기능
    - Exception Handling: NoHandlerFoundException 처리 추가 **
    - 이외 기능은 mysite04와 동일
@@ -120,7 +121,8 @@
    - Repository(DAO) 구현: MyBatis
    - Transaction: DataSourceTransactionManager(Spring JDBC), @Transactional(Transaction AOP Proxy)
 5. View
-   - Thymeleaf Template View
+   - JSP
+   - JSTL & EL
 6. Security
    - Authentication(인증) & Authorization(권한)
    - Spring Secuirty
@@ -131,7 +133,7 @@
 8. 기능
    - mysite05와 동일
 
-### mysite07 (완전한 jar)
+### mysite07
 1. Packaging
    - jar(Embeded Tomcat) **
 2. Framework
@@ -146,7 +148,7 @@
    - Repository(DAO) 구현: MyBatis
    - Transaction: DataSourceTransactionManager(Spring JDBC), @Transactional(Transaction AOP Proxy)
 5. View
-   - Thymeleaf Template View
+   - Thymeleaf Template View **
 6. Security
    - Authentication(인증) & Authorization(권한)
    - Spring Secuirty
