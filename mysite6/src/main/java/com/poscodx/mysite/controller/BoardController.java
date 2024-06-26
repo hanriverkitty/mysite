@@ -120,6 +120,7 @@ public class BoardController {
 			@ModelAttribute BoardVo vo
 			) {
 		// access control
+		System.out.println(vo);
 		UserVo authUser = (UserVo)authentication.getPrincipal();
 		vo.setUserNo(authUser.getNo().intValue());
 		boardService.addContents(vo);
