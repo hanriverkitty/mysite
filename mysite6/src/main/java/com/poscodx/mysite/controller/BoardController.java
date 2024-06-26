@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -91,17 +92,11 @@ public class BoardController {
 	}
 
 	@RequestMapping("/delete/{no}")
-	public String view(HttpSession session, @PathVariable("no") int no, @RequestParam("p") int p,
+	public String view(Authentication authentication, @PathVariable("no") int no, @RequestParam("p") int p,
 			@RequestParam("keyword") String keyword) {
-		// access control
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (authUser == null) {
-			return "redirect:/";
-		}
+		
 		BoardVo vo = boardService.findByNo(no);
-		if (authUser.getNo() != vo.getUserNo()) {
-			return "redirect:/";
-		}
+		UserVo authUser = (UserVo)authentication.getPrincipal();
 		///////////////////////////////////////////
 		boardService.deleteContents(no);
 		String decodeKwd="";
@@ -115,25 +110,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String add(HttpSession session) {
-		// access control
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (authUser == null) {
-				return "redirect:/";
-		}
+	public String add() {
 		return "board/write";
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(
-			HttpSession session,
+			Authentication authentication,
 			@ModelAttribute BoardVo vo
 			) {
 		// access control
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (authUser == null) {
-				return "redirect:/";
-		}
+		UserVo authUser = (UserVo)authentication.getPrincipal();
 		vo.setUserNo(authUser.getNo().intValue());
 		boardService.addContents(vo);
 		return "redirect:/board";

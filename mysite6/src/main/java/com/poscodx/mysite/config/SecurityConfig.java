@@ -1,4 +1,4 @@
-package com.poscodx.mysite.config.app;
+package com.poscodx.mysite.config;
 
 import java.io.IOException;
 
@@ -80,7 +80,7 @@ public class SecurityConfig {
     				.requestMatchers(new RegexRequestMatcher("^/admin/?.*$",null))
     				.hasAnyRole("ADMIN")
     				
-    				.requestMatchers(new RegexRequestMatcher("^/board/?(add|update|delete|reply)?/.*$",null))
+    				.requestMatchers(new RegexRequestMatcher("^/board/?(add|update|delete|reply).*$",null))
 	    			.hasAnyRole("ADMIN","USER")
     				
 	    			.requestMatchers(new RegexRequestMatcher("^/user/update$",null))
