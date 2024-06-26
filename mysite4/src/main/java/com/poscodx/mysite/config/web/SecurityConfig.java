@@ -60,7 +60,4 @@ public class SecurityConfig implements WebMvcConfigurer {
 			.excludePathPatterns("/user/auth","/user/logout","/assets/**");
 	}
 	
-	
-	
-	
 }
