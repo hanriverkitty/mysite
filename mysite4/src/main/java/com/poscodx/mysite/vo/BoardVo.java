@@ -7,15 +7,15 @@ public class BoardVo {
 				+ regDate + ", gNo=" + gNo + ", oNo=" + oNo + ", depth=" + depth + ", userNo=" + userNo + ", userName="
 				+ userName + "]";
 	}
-	int no;
+	Integer no;
 	String title;
 	String contents;
-	int hit;
+	Integer hit;
 	String regDate;
-	int gNo;
-	int oNo;
-	int depth;
-	int userNo;
+	Integer gNo;
+	Integer oNo;
+	Integer depth;
+	Integer userNo;
 	String userName;
 	public String getUserName() {
 		return userName;
@@ -23,10 +23,10 @@ public class BoardVo {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public int getNo() {
+	public Integer getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setNo(Integer no) {
 		this.no = no;
 	}
 	public String getTitle() {
@@ -41,10 +41,10 @@ public class BoardVo {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public int getHit() {
+	public Integer getHit() {
 		return hit;
 	}
-	public void setHit(int hit) {
+	public void setHit(Integer hit) {
 		this.hit = hit;
 	}
 	public String getRegDate() {
@@ -53,28 +53,28 @@ public class BoardVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public int getgNo() {
+	public Integer getgNo() {
 		return gNo;
 	}
-	public void setgNo(int gNo) {
+	public void setgNo(Integer gNo) {
 		this.gNo = gNo;
 	}
-	public int getoNo() {
+	public Integer getoNo() {
 		return oNo;
 	}
-	public void setoNo(int oNo) {
+	public void setoNo(Integer oNo) {
 		this.oNo = oNo;
 	}
-	public int getDepth() {
+	public Integer getDepth() {
 		return depth;
 	}
-	public void setDepth(int depth) {
+	public void setDepth(Integer depth) {
 		this.depth = depth;
 	}
-	public int getUserNo() {
+	public Integer getUserNo() {
 		return userNo;
 	}
-	public void setUserNo(int userNo) {
+	public void setUserNo(Integer userNo) {
 		this.userNo = userNo;
 	}
 	

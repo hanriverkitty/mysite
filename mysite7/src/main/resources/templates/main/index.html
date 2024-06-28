@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>mysite</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link th:href="@{/assets/css/main.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="container">
+	<!-- 바꿔야됨 -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+		<div id="wrapper">
+			<div id="content">
+				<div id="site-introduction">
+					<img th:id="profile" src="@{${servletContext.getAttribute('siteVo').profile}}" style="width:420px">
+					<h2 th:text="${servletContext.getAttribute('siteVo').welcome}"></h2>
+					<p>
+						<th:block th:text="${#strings.replace('servletContext.getAttribute('siteVo').description','\n','<br>')}"/>
+						<br><br>
+						<a th:href="@{/guestbook}">방명록</a>에 글 남기기<br>
+					</p>
+				</div>
+			</div>
+		</div>
+		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+	</div>
+</body>
+</html>
