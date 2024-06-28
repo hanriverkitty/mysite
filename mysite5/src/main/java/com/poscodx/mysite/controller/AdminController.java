@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.poscodx.mysite.security.Auth;
 import com.poscodx.mysite.service.FileUploadService;
 import com.poscodx.mysite.service.SiteService;
 import com.poscodx.mysite.vo.SiteVo;
@@ -27,7 +26,7 @@ public class AdminController {
 	@Autowired
 	private FileUploadService fileUploadService;
 	
-	@Auth(role = "ADMIN")
+	
 	@RequestMapping("")
 	public String main() {
 		return "admin/main";

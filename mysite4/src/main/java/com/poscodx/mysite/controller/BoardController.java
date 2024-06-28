@@ -59,7 +59,7 @@ public class BoardController {
 			login = false;
 			writer = false;
 		} else {
-			if (vo.getUserNo() != authUser.getNo()) {
+			if (vo.getUserNo() != authUser.getNo().intValue()) {
 				writer = false;
 			}
 		}
@@ -90,7 +90,7 @@ public class BoardController {
 			@RequestParam("keyword") String keyword) {
 
 		BoardVo vo = boardService.findByNo(no);
-		if (authUser.getNo() != vo.getUserNo()) {
+		if (authUser.getNo().intValue() != vo.getUserNo()) {
 			return "redirect:/";
 		}
 		///////////////////////////////////////////
