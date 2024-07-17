@@ -134,6 +134,7 @@
    - mysite05와 동일
 
 ### mysite07
+8081(on Linux) : api x, 화면: thymeleaf
 1. Packaging
    - jar(Embeded Tomcat) **
 2. Framework
@@ -158,3 +159,6 @@
    - Default Servlet Handler: disable
 8. 기능
    - mysite06와 동일
+
+### mysite08
+8084(on Linux) : (api o, landing) 화면: javascript(React)
